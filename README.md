@@ -8,7 +8,7 @@ pip install jbarchart
 
 ## Development installation
 
-Create a virtual environment and and install jbarchart in *editable* mode with the
+Create a virtual environment and install jbarchart in *editable* mode with the
 optional development dependencies:
 
 ```sh
