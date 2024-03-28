@@ -1,0 +1,72 @@
+.jbarchart-counter-button {
+  background: linear-gradient(
+    300deg,
+    #9933ff 33.26%,
+    #ff6666 46.51%,
+    #faca30 59.77%,
+    #00cd99 73.03%,
+    #00ccff 86.29%
+  );
+  border-radius: 10px;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  margin: 10px;
+  padding: 10px 20px;
+  transition: transform 0.25s ease-in-out;
+}
+
+.jbarchart-counter-button:hover {
+  transform: scale(1.05);
+}
+
+/* Container for the dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Button used to open the dropdown */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change color of the button when hovering */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}

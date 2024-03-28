@@ -1,0 +1,18 @@
+{
+	"scripts": {
+		"clean": "rm src/jbarchart/static/widget.js",
+		"prepare": "npm run lint && npm run build",
+		"lint": "eslint 'js/**/*.js'",
+		"test": "npm run lint",
+		"dev": "npm run build -- --sourcemap=inline --watch",
+		"build": "esbuild src/widget.js --minify --format=esm --bundle --outdir=../src/jbarchart/static"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"esbuild": "^0.19.5",
+		"eslint": "^8.52.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-prettier": "^5.0.1",
+		"prettier": "^3.0.3"
+	}
+}
