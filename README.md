@@ -1,20 +1,13 @@
-# jbarchart
-
-## Installation
-
-```sh
-pip install jbarchart
-```
+# jbar
 
 ## Development installation
 
-Create a virtual environment and and install jbarchart in *editable* mode with the
+Create a virtual environment and install jbar in *editable* mode with the
 optional development dependencies:
 
 ```sh
-python -m venv .venv
-source .venv/bin/activate
-pip install -e ".[dev]"
+poetry install
+poetry shell
 ```
 
 You then need to install the JavaScript dependencies and run the development server.

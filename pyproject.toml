@@ -1,31 +1,18 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[project]
-name = "jbarchart"
-version = "0.0.0"
-dependencies = ["anywidget"]
+[tool.poetry]
+name = "jbar"
+version = "0.1.0"
+description = ""
+authors = ["Jakob Troidl <jakob.troidl@googlemail.com>"]
 readme = "README.md"
 
-[project.optional-dependencies]
-dev = ["watchfiles", "jupyterlab"]
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^2.2.1"
+anywidget = "^0.9.6"
+watchfiles = "^0.21.0"
+jupyterlab = "^4.1.5"
 
-# automatically add the dev feature to the default env (e.g., hatch shell)
-[tool.hatch.envs.default]
-features = ["dev"]
 
-
-[tool.hatch.build]
-only-packages = true
-artifacts = ["src/jbarchart/static/*"]
-
-[tool.hatch.build.hooks.jupyter-builder]
-build-function = "hatch_jupyter_builder.npm_builder"
-ensured-targets = ["src/jbarchart/static/widget.js"]
-skip-if-exists = ["src/jbarchart/static/widget.js"]
-dependencies = ["hatch-jupyter-builder>=0.5.0"]
-
-[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
-npm = "npm"
-build_cmd = "build"
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
