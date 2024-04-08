@@ -8,27 +8,18 @@ function render({ model, el }) {
   div.id = "my_dataviz";
 
   let data = d3.csvParse(model.get("data"));
-  let barchart = new BarChart(div, data);
-
-  let button1 = document.createElement("button");
-  button1.innerHTML = `outgoing_syn`;
-  button1.addEventListener("click", () => {
-    barchart.update("outgoing_syn");
-  });
-  el.appendChild(button1);
-
-  let button2 = document.createElement("button");
-  button2.innerHTML = `incoming_syn`;
-  button2.addEventListener("click", () => {
-    barchart.update("incoming_syn");
-  });
-  el.appendChild(button2);
-
+  let x = model.get("x");
+  let barchart = new BarChart(div, data, x);
   el.appendChild(div);
+
+  let item = data.columns[0];
+  if (data.columns[0] == x) {
+    item = data.columns[1];
+  }
 
   setTimeout(() => {
     barchart.init();
-    barchart.update("outgoing_syn");
+    barchart.update(item);
   }, 100);
 }
 

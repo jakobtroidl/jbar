@@ -1,10 +1,10 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@6/+esm";
 
 export class BarChart {
-  constructor(parent, data, model) {
+  constructor(parent, data, x) {
     this.data = data;
     this.parent = parent;
-    this.model = model;
+    this.category = x;
   }
 
   init() {
@@ -35,7 +35,7 @@ export class BarChart {
   }
 
   update(variableName) {
-    this.x.domain(this.data.map((d) => d.cell_type));
+    this.x.domain(this.data.map((d) => d[this.category]));
     this.xAxis.transition().duration(1000).call(d3.axisBottom(this.x));
 
     // update the chart
@@ -48,7 +48,7 @@ export class BarChart {
     u.join("rect")
       .transition()
       .duration(1000)
-      .attr("x", (d) => this.x(d.cell_type))
+      .attr("x", (d) => this.x(d[this.category]))
       .attr("y", (d) => this.y(d[variableName]))
       .attr("width", this.x.bandwidth())
       .attr("height", (d) => this.height - this.y(d[variableName]))
