@@ -26,9 +26,13 @@ class BarChart(anywidget.AnyWidget):
         self.x = x
         self.exclude = exclude
 
+        exclude_exists = all(column in data.columns for column in exclude)
         # remove unwanted columns
-        if self.exclude:
-            data.drop(self.exclude, axis=1, inplace=True)
+        if self.exclude and exclude_exists:
+            data = data.drop(self.exclude, axis=1)
+
+        self.columns = data.columns.tolist()
+        self.columns.remove(x)
         
         output = StringIO()
         data.to_csv(output, index=False)
@@ -37,13 +41,15 @@ class BarChart(anywidget.AnyWidget):
         
     
     def dropdown_change(self, change):
-        print(change)
+        if change['type'] == 'change' and change['name'] == 'value':
+            print("changed to %s" % change['new'])
         
     def show(self):
+        options = [(col, i) for i, col in enumerate(self.columns)]
         dropdown = widgets.Dropdown(
-            options=[('One', 1), ('Two', 2), ('Three', 3)],
-            value=2,
-            description='Number:',
+            options=options,
+            value=0,
+            description='Options:',
         )
 
         dropdown.observe(self.dropdown_change)
