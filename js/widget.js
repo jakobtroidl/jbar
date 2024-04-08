@@ -3,7 +3,6 @@ import { BarChart } from "./barchart.js";
 import "./widget.css";
 
 function render({ model, el }) {
-  console.log("rendering the widget 29");
   let div = document.createElement("div");
   div.id = "my_dataviz";
 
