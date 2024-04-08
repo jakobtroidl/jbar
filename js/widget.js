@@ -7,15 +7,13 @@ function render({ model, el }) {
   div.id = "my_dataviz";
 
   let data = d3.csvParse(model.get("data"));
-  let x = model.get("x");
-  let selection = model.get("selection");
 
-  let barchart = new BarChart(div, data, x);
+  let category = model.get("x");
+  // 0 is category, pick first value after category as default
+  let selection = data.columns[1];
+
+  let barchart = new BarChart(div, data, category);
   el.appendChild(div);
-
-  if (data.columns[selection] == x) {
-    selection = data.columns[selection + 1];
-  }
 
   model.on("msg:custom", (msg) => {
     // on dropdown menu selection change

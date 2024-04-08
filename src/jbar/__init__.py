@@ -32,6 +32,9 @@ class BarChart(anywidget.AnyWidget):
         # remove unwanted columns
         if self.exclude and exclude_exists:
             data = data.drop(self.exclude, axis=1)
+        
+        # bring x to the front
+        data = data[[x] + data.drop(columns=[x]).columns.tolist()]
 
         self.columns = data.columns.tolist()
         self.columns.remove(x)
@@ -52,7 +55,7 @@ class BarChart(anywidget.AnyWidget):
     
     def dropdown_change(self, change):
         if change['type'] == 'change' and change['name'] == 'value':
-            self.selection = change['new']
+            self.selection = change['new'] + 1
             self.send({"type": "update-selection", "value": self.selection})
         
     def show(self):
