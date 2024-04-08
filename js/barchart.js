@@ -8,8 +8,6 @@ export class BarChart {
   }
 
   init() {
-    // console.log('initialize the chart');
-
     // set the dimensions and margins of the graph
     const margin = { top: 30, right: 30, bottom: 70, left: 60 };
     this.width = this.parent.clientWidth - margin.left - margin.right;
@@ -35,6 +33,7 @@ export class BarChart {
   }
 
   update(variableName) {
+    console.log("variableName: ", variableName);
     this.x.domain(this.data.map((d) => d[this.category]));
     this.xAxis.transition().duration(1000).call(d3.axisBottom(this.x));
 

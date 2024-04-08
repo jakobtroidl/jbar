@@ -8,17 +8,27 @@ function render({ model, el }) {
 
   let data = d3.csvParse(model.get("data"));
   let x = model.get("x");
+  let selection = model.get("selection");
+
   let barchart = new BarChart(div, data, x);
   el.appendChild(div);
 
-  let item = data.columns[0];
-  if (data.columns[0] == x) {
-    item = data.columns[1];
+  if (data.columns[selection] == x) {
+    selection = data.columns[selection + 1];
   }
+
+  model.on("msg:custom", (msg) => {
+    // on dropdown menu selection change
+    if (msg.type === "update-selection") {
+      let newSelection = msg.value;
+      let myValue = data.columns[newSelection];
+      barchart.update(myValue);
+    }
+  });
 
   setTimeout(() => {
     barchart.init();
-    barchart.update(item);
+    barchart.update(selection);
   }, 100);
 }
 

@@ -18,6 +18,7 @@ class BarChart(anywidget.AnyWidget):
     data = traitlets.Unicode().tag(sync=True)
     x = traitlets.Unicode().tag(sync=True)
     exclude = traitlets.List().tag(sync=True)
+    selection = traitlets.Int().tag(sync=True)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -25,6 +26,7 @@ class BarChart(anywidget.AnyWidget):
     def update(self, data, x, exclude=[]):
         self.x = x
         self.exclude = exclude
+        self.selection = 0
 
         exclude_exists = all(column in data.columns for column in exclude)
         # remove unwanted columns
@@ -38,22 +40,22 @@ class BarChart(anywidget.AnyWidget):
         data.to_csv(output, index=False)
         self.data = output.getvalue()
         output.close()
-        
-    
-    def dropdown_change(self, change):
-        if change['type'] == 'change' and change['name'] == 'value':
-            print("changed to %s" % change['new'])
-        
-    def show(self):
+
         options = [(col, i) for i, col in enumerate(self.columns)]
-        dropdown = widgets.Dropdown(
+        self.dropdown = widgets.Dropdown(
             options=options,
             value=0,
             description='Options:',
         )
-
-        dropdown.observe(self.dropdown_change)
-
+        self.dropdown.observe(self.dropdown_change)
+        
+    
+    def dropdown_change(self, change):
+        if change['type'] == 'change' and change['name'] == 'value':
+            self.selection = change['new']
+            self.send({"type": "update-selection", "value": self.selection})
+        
+    def show(self):
         plot = widgets.VBox(
             children=[self],
             layout=widgets.Layout(
@@ -61,6 +63,6 @@ class BarChart(anywidget.AnyWidget):
                 width='auto'
             )
         )
-        return widgets.VBox([dropdown, plot])
+        return widgets.VBox([self.dropdown, plot])
         
 
