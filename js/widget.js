@@ -26,8 +26,10 @@ function render({ model, el }) {
 
   el.appendChild(div);
 
-  barchart.init();
-  barchart.update("outgoing_syn");
+  setTimeout(() => {
+    barchart.init();
+    barchart.update("outgoing_syn");
+  }, 100);
 }
 
 export default { render };
