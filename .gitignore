@@ -7,6 +7,4 @@ dist
 __pycache__
 .ipynb_checkpoints
 
-src/jbar/static
-
 pypitoken.txt

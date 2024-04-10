@@ -13,8 +13,8 @@ except importlib.metadata.PackageNotFoundError:
     __version__ = "unknown"
 
 class BarChart(anywidget.AnyWidget):
-    _esm = pathlib.Path(__file__).parent / "static" / "widget.js"
-    _css = pathlib.Path(__file__).parent / "static" / "widget.css"
+    _esm = pathlib.Path(__file__).parent / "widget.js"
+    # _css = pathlib.Path(__file__).parent / "widget.css"
     data = traitlets.Unicode().tag(sync=True)
     x = traitlets.Unicode().tag(sync=True)
     exclude = traitlets.List().tag(sync=True)

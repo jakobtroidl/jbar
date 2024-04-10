@@ -1,9 +1,12 @@
 [tool.poetry]
 name = "jbar"
-version = "0.1.1"
+version = "0.1.6"
 description = ""
 authors = ["Jakob Troidl <jakob.troidl@googlemail.com>"]
 readme = "README.md"
+
+[[tool.poetry.packages]]
+include = "jbar"
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -11,7 +14,6 @@ pandas = "^2.2.1"
 anywidget = "^0.9.6"
 watchfiles = "^0.21.0"
 jupyterlab = "^4.1.5"
-
 
 [build-system]
 requires = ["poetry-core"]

@@ -1,6 +1,5 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@6/+esm";
 import { BarChart } from "./barchart.js";
-import "./widget.css";
 
 function render({ model, el }) {
   let div = document.createElement("div");
