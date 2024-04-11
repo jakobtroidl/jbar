@@ -1,10 +1,9 @@
-[![PyPI](https://img.shields.io/pypi/v/anywidget.svg?color=green)](https://pypi.org/project/jbar/)
+[![PyPI](https://img.shields.io/pypi/v/jbar.svg?color=green)](https://pypi.org/project/jbar/)
 [![License](https://img.shields.io/pypi/l/anywidget.svg?color=green)](https://github.com/jakobtroidl/jbar/raw/main/LICENSE)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1OuASVyOI8LkeNk6ZLoRbL80kw6uwyd7P?usp=sharing)
   
 ## Interactive Jupyter Barchart
-This is an interactive bar chart widget for Jupyter Notebook, VS Code, and Google Colab. Check out the example [here](https://colab.research.google.com/drive/1OuASVyOI8LkeNk6ZLoRbL80kw6uwyd7P?usp=sharing). 
-
+This is an interactive bar chart widget for Jupyter Notebook, VS Code, and Google Colab.
 ### Get started
 
 ```bash
