@@ -22,6 +22,14 @@ class BarChart(anywidget.AnyWidget):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.stacked_checkbox = widgets.Checkbox(
+            value=False,
+            description='Stacked',
+            disabled=False,
+            indent=True
+        )
+        self.stacked_checkbox.observe(self.stacked_change)
+
         
     def update(self, data, x, exclude=[]):
         self.x = x
@@ -57,8 +65,14 @@ class BarChart(anywidget.AnyWidget):
         if change['type'] == 'change' and change['name'] == 'value':
             self.selection = change['new'] + 1
             self.send({"type": "update-selection", "value": self.selection})
+
+    def stacked_change(self, change):
+        if change['type'] == 'change' and change['name'] == 'value':
+            # self.send({"type": "update-stacked", "value": change['new']})
+            print("Hit Checkbox")
         
     def show(self):
+        toolbar = widgets.HBox([self.dropdown, self.stacked_checkbox])
         plot = widgets.VBox(
             children=[self],
             layout=widgets.Layout(
@@ -66,6 +80,6 @@ class BarChart(anywidget.AnyWidget):
                 width='auto'
             )
         )
-        return widgets.VBox([self.dropdown, plot])
+        return widgets.VBox([toolbar, plot])
         
 
